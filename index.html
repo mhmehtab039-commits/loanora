@@ -2,260 +2,285 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loanora - Personal Loan Platform</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loanora - Personal Loan</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#f5f8ff;
-  color:#14265f;
-}
-header{
-  background:white;
-  padding:24px 22px;
-  border-bottom:1px solid #e5e9f2;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-.logo{font-size:32px;font-weight:800}
-.logo span{color:#45a85a}
-.container{max-width:900px;margin:auto}
-.hero{
-  padding:60px 22px 45px;
-}
-.label{font-size:18px;color:#66738e}
-h1{
-  font-size:52px;
-  line-height:1.02;
-  margin:12px 0 24px;
-}
-.hero p{
-  font-size:21px;
-  line-height:1.6;
-  color:#66738e;
-}
-.btn{
-  display:inline-block;
-  background:#1760df;
-  color:white;
-  padding:17px 25px;
-  border-radius:14px;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:700;
-  border:0;
-  cursor:pointer;
-}
-.card{
-  background:white;
-  margin:22px;
-  padding:30px;
-  border-radius:25px;
-  box-shadow:0 5px 25px #dce4f2;
-}
-.card h2{font-size:30px}
-.amount{
-  font-size:42px;
-  font-weight:800;
-  margin:15px 0;
-}
-input,select{
-  width:100%;
-  padding:17px;
-  margin:8px 0 18px;
-  border:1px solid #ccd5e6;
-  border-radius:13px;
-  font-size:17px;
-}
-.features{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.feature{
-  background:white;
-  padding:25px;
-  border-radius:22px;
-}
-.feature h3{font-size:22px}
-.feature p{color:#68758e;line-height:1.5}
-.steps{counter-reset:step}
-.step{
-  padding:20px 0;
-  border-bottom:1px solid #e5e9f2;
-}
-footer{
-  background:#10245c;
-  color:white;
-  padding:45px 22px;
-  margin-top:50px;
-}
-.small{font-size:14px;color:#bdc8e2;line-height:1.6}
-@media(max-width:700px){
-  h1{font-size:44px}
-  .features{grid-template-columns:1fr}
-}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f8ff;color:#14265f}
+header{background:white;padding:20px;border-bottom:1px solid #e5e9f2;position:sticky;top:0;z-index:5}
+.logo{font-size:30px;font-weight:800;color:#4568d8}
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:white;border-radius:20px;padding:22px;margin:15px 0;box-shadow:0 4px 18px #dce3f2}
+h1{font-size:30px;margin:10px 0}
+h2{margin-top:5px}
+button{border:0;border-radius:14px;padding:14px 18px;background:#4568d8;color:white;font-size:16px;font-weight:700;cursor:pointer}
+button.secondary{background:#e9efff;color:#4568d8}
+input,select{width:100%;padding:14px;border:1px solid #ccd5e8;border-radius:12px;margin:7px 0 15px;font-size:16px}
+label{font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.box{padding:18px;border-radius:16px;background:#eef3ff}
+.nav{display:flex;gap:8px;overflow:auto;margin:15px 0}
+.nav button{white-space:nowrap;padding:10px 14px}
+.hidden{display:none}
+.amount{font-size:32px;font-weight:800;color:#4568d8}
+.success{color:#18864b;font-weight:700}
+.warning{color:#d88900;font-weight:700}
+.loan{border-left:5px solid #4568d8}
+small{color:#65708a}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="container">
-    <div class="logo">Loan<span>ora</span></div>
+  <div class="container" style="padding:0">
+    <div class="logo">Loanora</div>
+    <small>Simple & Smart Loan Platform</small>
   </div>
 </header>
 
-<main>
+<div class="container">
 
-<section class="hero container">
-  <div class="label">PERSONAL LOAN PLATFORM</div>
-  <h1>Simple.<br>Transparent.<br>Responsible.</h1>
+<div id="login" class="card">
+  <h1>Welcome to Loanora 👋</h1>
+  <p>Login or create your account to continue.</p>
 
-  <p>
-    Explore personal-loan options from ₹5,000 to ₹50,000
-    through a clear application experience.
-  </p>
+  <label>Mobile Number</label>
+  <input id="mobile" type="tel" placeholder="Enter mobile number">
 
-  <a class="btn" href="#apply">Check Eligibility</a>
-</section>
+  <label>Password</label>
+  <input id="password" type="password" placeholder="Enter password">
 
-<section class="card container">
-  <h2>Loan amount</h2>
-  <div class="amount" id="amount">₹5,000</div>
+  <button onclick="login()">Login</button>
+  <button class="secondary" onclick="signup()">Create Account</button>
+</div>
 
-  <input
-    type="range"
-    id="slider"
-    min="5000"
-    max="50000"
-    step="1000"
-    value="5000"
-    oninput="updateAmount()"
-  >
+<div id="app" class="hidden">
 
-  <p>Choose the amount you want to apply for.</p>
-</section>
+<div class="nav">
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('apply')">Apply Loan</button>
+  <button onclick="show('emi')">EMI</button>
+  <button onclick="show('status')">Status</button>
+  <button onclick="show('profile')">Profile</button>
+</div>
 
-<section class="container">
-  <div class="features">
-
-    <div class="feature">
-      <h3>🔒 Secure</h3>
-      <p>Use appropriate security and consent controls before collecting personal information.</p>
+<section id="home">
+  <div class="card">
+    <h1>Hello 👋</h1>
+    <p>Welcome to your Loanora dashboard.</p>
+    <div class="grid">
+      <div class="box">
+        <small>Available Loan</small>
+        <div class="amount">₹50,000</div>
+      </div>
+      <div class="box">
+        <small>Interest From</small>
+        <div class="amount">12%</div>
+      </div>
     </div>
+  </div>
 
-    <div class="feature">
-      <h3>📋 Transparent</h3>
-      <p>Show lender details, applicable interest/APR, fees and repayment schedule clearly.</p>
-    </div>
+  <div class="card">
+    <h2>Quick Actions</h2>
+    <button onclick="show('apply')">💰 Apply for Loan</button>
+    <button class="secondary" onclick="show('emi')">🧮 Calculate EMI</button>
+  </div>
 
-    <div class="feature">
-      <h3>💬 Support</h3>
-      <p>Provide customer support and a clear grievance process for users.</p>
-    </div>
-
+  <div class="card">
+    <h2>Why Loanora?</h2>
+    <p>✓ Simple application</p>
+    <p>✓ Fast eligibility check</p>
+    <p>✓ Easy EMI calculation</p>
+    <p>✓ Application status tracking</p>
   </div>
 </section>
 
-<section class="card container">
-  <h2>How it works</h2>
+<section id="apply" class="hidden">
+  <div class="card">
+    <h1>Apply for Loan 💰</h1>
 
-  <div class="steps">
+    <label>Full Name</label>
+    <input id="name" placeholder="Your full name">
 
-    <div class="step">
-      <h3>01 — Apply</h3>
-      <p>Select your desired loan amount and submit basic details.</p>
-    </div>
+    <label>Loan Amount</label>
+    <input id="loanAmount" type="number" placeholder="Example: 25000">
 
-    <div class="step">
-      <h3>02 — Verify</h3>
-      <p>Complete applicable KYC and consent requirements.</p>
-    </div>
-
-    <div class="step">
-      <h3>03 — Review</h3>
-      <p>Review lender, pricing, terms and required disclosures.</p>
-    </div>
-
-    <div class="step">
-      <h3>04 — Decision</h3>
-      <p>Eligible applications proceed according to the authorised lender's process.</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="apply" class="card container">
-  <h2>Start your application</h2>
-
-  <form onsubmit="submitForm(event)">
-
-    <label>Full name</label>
-    <input type="text" placeholder="Your name" required>
-
-    <label>Mobile number</label>
-    <input
-      type="tel"
-      placeholder="10-digit mobile number"
-      pattern="[0-9]{10}"
-      required
-    >
-
-    <label>Loan amount</label>
-    <select id="loanAmount">
-      <option>₹5,000</option>
-      <option>₹10,000</option>
-      <option>₹15,000</option>
-      <option>₹20,000</option>
-      <option>₹25,000</option>
-      <option>₹30,000</option>
-      <option>₹40,000</option>
-      <option>₹50,000</option>
+    <label>Loan Duration</label>
+    <select id="duration">
+      <option value="6">6 Months</option>
+      <option value="12">12 Months</option>
+      <option value="24">24 Months</option>
+      <option value="36">36 Months</option>
     </select>
 
-    <button class="btn" type="submit">Continue</button>
+    <label>Monthly Income</label>
+    <input id="income" type="number" placeholder="Example: 25000">
 
-  </form>
+    <label>Purpose</label>
+    <select id="purpose">
+      <option>Medical</option>
+      <option>Business</option>
+      <option>Education</option>
+      <option>Personal</option>
+      <option>Other</option>
+    </select>
 
-  <p class="small">
-    Demo prototype only. This website does not approve or disburse loans.
-    Do not enter Aadhaar, PAN, bank passwords, OTPs or other sensitive KYC
-    information on this prototype.
-  </p>
+    <button onclick="applyLoan()">Submit Application</button>
+    <p id="applyMsg"></p>
+  </div>
 </section>
 
-</main>
+<section id="emi" class="hidden">
+  <div class="card">
+    <h1>EMI Calculator 🧮</h1>
 
-<footer>
-  <div class="container">
-    <div class="logo">Loan<span>ora</span></div>
+    <label>Loan Amount</label>
+    <input id="emiAmount" type="number" placeholder="50000">
 
-    <p class="small">
-      Website prototype. Actual lending, fees, disclosures, KYC,
-      data handling and loan servicing must be implemented only after
-      the appropriate legal and regulated-lender structure is in place.
-    </p>
+    <label>Annual Interest Rate (%)</label>
+    <input id="rate" type="number" value="12">
 
-    <p>Privacy &nbsp; Terms &nbsp; Support</p>
+    <label>Duration (Months)</label>
+    <input id="months" type="number" value="12">
+
+    <button onclick="calculateEMI()">Calculate EMI</button>
+
+    <div id="emiResult" class="box" style="margin-top:18px">
+      Enter details above.
+    </div>
   </div>
-</footer>
+</section>
+
+<section id="status" class="hidden">
+  <div class="card">
+    <h1>Loan Status 📋</h1>
+
+    <div class="loan box">
+      <small>Application ID</small>
+      <h2 id="applicationId">LN-000000</h2>
+      <p>Status: <span class="warning">Under Review</span></p>
+      <p>Our team will review your application.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Loan History</h2>
+    <p>No previous loans.</p>
+  </div>
+</section>
+
+<section id="profile" class="hidden">
+  <div class="card">
+    <h1>My Profile 👤</h1>
+
+    <label>Name</label>
+    <input id="profileName" placeholder="Your name">
+
+    <label>Mobile</label>
+    <input id="profileMobile" readonly>
+
+    <label>Email</label>
+    <input type="email" placeholder="your@email.com">
+
+    <button onclick="saveProfile()">Save Profile</button>
+    <button class="secondary" onclick="logout()">Logout</button>
+
+    <hr style="margin:25px 0">
+    <h2>Support 📞</h2>
+    <p>Need help with your application?</p>
+    <button onclick="alert('Support request received!')">Contact Support</button>
+  </div>
+</section>
+
+</div>
+</div>
 
 <script>
-function updateAmount(){
-  const value=document.getElementById("slider").value;
-  document.getElementById("amount").innerText=
-    "₹"+Number(value).toLocaleString("en-IN");
+function login(){
+  let m=document.getElementById("mobile").value;
+  let p=document.getElementById("password").value;
+
+  if(!m || !p){
+    alert("Please enter mobile number and password");
+    return;
+  }
+
+  localStorage.setItem("loanoraMobile",m);
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("profileMobile").value=m;
+  show("home");
 }
 
-function submitForm(event){
-  event.preventDefault();
-  alert("Application demo submitted. No loan has been approved.");
+function signup(){
+  alert("Account creation demo: please enter your mobile number and password, then tap Login.");
 }
+
+function logout(){
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+}
+
+function show(id){
+  ["home","apply","emi","status","profile"].forEach(x=>{
+    document.getElementById(x).classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function calculateEMI(){
+  let P=parseFloat(document.getElementById("emiAmount").value);
+  let annual=parseFloat(document.getElementById("rate").value);
+  let n=parseInt(document.getElementById("months").value);
+
+  if(!P || !annual || !n){
+    alert("Please enter all EMI details");
+    return;
+  }
+
+  let r=annual/12/100;
+  let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  let total=emi*n;
+  let interest=total-P;
+
+  document.getElementById("emiResult").innerHTML=
+  "<h2>Monthly EMI: ₹"+emi.toFixed(2)+"</h2>"+
+  "<p>Total Payment: ₹"+total.toFixed(2)+"</p>"+
+  "<p>Total Interest: ₹"+interest.toFixed(2)+"</p>";
+}
+
+function applyLoan(){
+  let name=document.getElementById("name").value;
+  let amount=document.getElementById("loanAmount").value;
+  let income=document.getElementById("income").value;
+
+  if(!name || !amount || !income){
+    alert("Please fill all required details");
+    return;
+  }
+
+  let id="LN-"+Math.floor(100000+Math.random()*900000);
+  document.getElementById("applicationId").innerText=id;
+
+  document.getElementById("applyMsg").innerHTML=
+  "<span class='success'>✓ Application submitted successfully!</span>";
+
+  show("status");
+}
+
+function saveProfile(){
+  alert("Profile saved successfully!");
+}
+
+window.onload=function(){
+  let m=localStorage.getItem("loanoraMobile");
+  if(m){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    document.getElementById("profileMobile").value=m;
+  }
+};
 </script>
 
 </body>
